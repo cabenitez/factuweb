@@ -1,0 +1,476 @@
+body {
+	/*
+	background: #CBE2F1;
+    background-image: url("../imagenes/fondo_cuadrito.gif");
+    */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #494949;
+	margin: 0;
+	padding: 0;
+}
+
+body.sidebar-left  #footer {
+	margin-left: -210px;
+}
+
+.content ul {
+	margin: 0.5em 0 1em;
+	padding: 0;
+}
+
+.content ul li {
+	margin: 0.4em 0 0.4em 1.5em;
+}
+
+ul, quote, code, fieldset {
+	margin: .5em 0;
+}
+
+/**
+ * Primary navigation
+ */
+ul.primary-links {
+	float: right;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	z-index: 4;
+}
+
+ul.primary-links li {
+	background: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+ul.primary-links li a, ul.primary-links li a:link, ul.primary-links li a:visited {
+	background: transparent url("../imagenes/bg-navigation-item.png") no-repeat 50% 0;
+	color: #fff;
+	display: block;
+	margin: 0 1em;
+	padding: .75em 0 0;
+}
+
+ul.primary-links li a:hover, ul.primary-links li a.active {
+	
+	background: transparent url("../imagenes/bg-navigation-item-hover.png") no-repeat 50% 0;
+	/*
+	color: #fff;
+	font-weight:bold;
+	*/
+	color:#FFCC00;
+}
+.menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menu li li, .item-list ul li, li.leaf, .links li {
+	background: transparent url("../imagenes/menu-leaf.gif") no-repeat 0 .35em;
+	list-style-image: none;
+	list-style-type: none;
+	padding: 0 0 .3em 13px;
+}
+
+#header h1, #header h1 a {
+	color: #fff;
+	font-size: 1.5em;
+	font-weight: normal;
+	text-decoration: none;
+	text-shadow: #1659ac 0px 1px 3px;
+}
+
+#navigation {
+/*	background: url("../imagenes/bg-navigation.png") repeat-x 50% 100%;*/
+        background-color: #CBE2F1;
+	height: 1em;
+}
+
+/* Layout and images */
+#wrapper {
+/*	background: url("../imagenes/body.png") #edf5fa repeat-x 50% 0; edf5fa = celeste clarito*/
+	height: 600px; /* ALTURA DE LA PAGINA*/
+}
+
+#wrapper #container {
+    /*max-width: 1270px;*/
+    margin:0 auto;
+    padding:0 20px;
+    text-align:left;
+    height:120px;
+
+    border-bottom: 1px solid orange;
+    border-top: 1px solid orange;
+
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#315EA8), to(#53AFEC));
+    /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(top, #315EA8, #53AFEC);
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, #315EA8, #53AFEC);
+    /* IE 10 */
+    background: -ms-linear-gradient(top, #315EA8, #53AFEC);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, #315EA8, #53AFEC);
+  
+}
+
+/* We must define 100% width to avoid the body being too narrow for near-empty pages */
+#wrapper #container #center {
+	float: left;
+	width: 100%;
+}
+
+/* Now we add the backgrounds for the main content shading */
+#wrapper #container #center #squeeze {
+	background: url("../imagenes/bg-content.png") #fff repeat-x 50% 0;
+}
+
+#wrapper #container #center .right-corner {
+	background: transparent url("../imagenes/bg-content-right.png") no-repeat 100% 0;
+	left: 10px;
+	position: relative;
+}
+
+#wrapper #container #center .right-corner .left-corner {
+	background: transparent url("../imagenes/bg-content-left.png") no-repeat 0 0;
+	left: -10px;
+	margin-left: -10px;
+	min-height: 400px;
+	padding: 60px 25px 5em 35px;
+	position: relative;
+}
+
+#wrapper #container #footer {
+	clear: both;
+	color: #898989;
+	float: none;
+	margin: 4em 0 -3em;
+	text-align: center;
+}
+
+#wrapper #container #header {
+	/*height: 80px;*/
+	float:left;
+	height:120px;
+	width:80%;
+}
+
+#wrapper #container #header #logo-floater {
+	position: absolute;
+}
+
+#wrapper #container #header h1, 
+#wrapper #container #header h1 a:link, 
+#wrapper #container #header h1 a:visited {
+	font-weight: bold;
+	line-height: 120px;
+	position: relative;
+	white-space: nowrap;
+	z-index: 2;
+}
+
+
+#wrapper #container .sidebar {
+	float: left;
+	margin: 60px 0 5em;
+	width: 208px;
+	z-index: 2;
+}
+
+body > #wrapper #container .sidebar {
+	position: relative;
+}
+
+#MenuAplicacion{
+    background-color: #CBE2F1;
+    margin-bottom: -6px;
+    padding-bottom: 5px;
+    
+}
+
+.fondo_menu{ 									/* solo para la pagina principal*/
+	background-image: url("../imagenes/fondo4.png"); 
+	background-repeat: repeat-x   ;				/* solo repite para el costado y no para abajo  ||  repeat | repeat-x | repeat-y | no-repeat  */
+} 
+fieldset{
+	background-color:#eeeeee;  					/* #F0F0F0 #F9F8F8 #FAFAFA       RECOMENDADO --> #EEEEEE <--       #F3F1F1 gris clarito*/
+    border: 1px solid #b6c7e5; /*border color*/ 
+}
+
+.top{
+	/* background-color:#c4dcfb; */
+	background-image:url(../imagenes/fondo_titulo_tabla.gif); 
+	color:#FFFFFF;
+}
+.totales{
+	background-color:#CCCCCC;				/* color:#FFFFFF; */
+}
+.cuerpo{
+	background-color:#b6c7e5;
+}
+.nombreEmpresa{
+	font-size: 45px;
+	font-weight: inherit;
+	color:#FFFFFF;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding-top:10;
+}
+.debe{
+	font-size: 20px;
+	color:#FF0000;
+}
+.haber{
+	font-size: 20px;
+	color:#009900;
+}
+
+.datosEmpresa{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight:inherit;
+	color:#ffffff;
+	padding-top:5;
+}
+.seccion {
+	font-size: 13px;
+	line-height: 17px; /*   ancho de la fila*/
+	font-weight:normal;
+	color: #336AA2;
+	text-decoration: none;
+	vertical-align:bottom;
+}
+hr{
+   background-color: #FFFFFF; /*background color of content*/ 
+   color: #000; /*text color of content*/ 
+   border: 1px solid #b6c7e5; /*border color*/ 
+   padding: .1em 2ex; 
+}
+
+.caja {
+	font-size: 12px;
+	text-decoration: none;
+	background-color: #F9FCFF;
+	border: 1px solid #b6c7e5;
+	text-transform:none;  /* COMBIERTE A MAYUSCULA TODAS LAS LETRAS*/
+	
+	/*
+	/*-moz-box-shadow:0 0 10px #000000;* /
+	-moz-border-radius:5px; 			/* Firefox, SeaMonkey, K-meleon y los que usan el motor Gecko) * /
+	-webkit-border-radius:5px;			/* Google Chrome, Safari y los que usan el motor WebKit * /
+	-khtml-border-radius:5px;			/* Konqueror * /
+	behavior: url(border-radius.htc);	/* IE* /
+	background: none repeat scroll 0 0 #FFFFFF;
+	padding: 2px 5px 2px 2px;
+	*/
+}
+.caja_min {
+	font-size: 12px;
+	text-decoration: none;
+	background-color: #F9FCFF;
+	border: 1px solid #b6c7e5;
+	text-transform:uppercase;  /* COMBIERTE A MAYUSCULA TODAS LAS LETRAS*/
+	
+}
+
+.caja:focus{
+	border: 1px solid #00CCFF;
+	border: 1px solid #0099FF;
+	background-color:#FFFFEA;				/* FFFFEA  FFFFE1    FFFFCC caja con foco*/
+}
+.caja:disabled{
+	background-color:#F0F0F0;				/* caja deshabilitada*/
+}
+.caja_fila {   								/*  caja de las facturas para la modificacion IN SITU*/
+	text-decoration: none;
+	font-size: 12px;
+	background:transparent;
+	border: 0px solid #EAEAEA;
+	text-align:center;
+}
+.select_1 {
+	font-size: 12px;
+	text-decoration: none;
+	background-color: #FFFFCC;              /*#FFFFEC; */
+	border: 1px solid #b6c7e5;
+}
+.select_1:disabled{
+	background-color:#F0F0F0;				/* caja deshabilitada*/
+}
+
+.botones{
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+	color:#336AA2;
+}
+.pie{
+	font-size:10px;
+	color:#CCCCCC;
+	line-height:normal;
+}
+.advertencia{ 
+	color:#FF0000;	
+	border: none;
+	font-family:tahoma; 
+	font-size:10px; 
+	text-align:center;
+	background-color:#EEEEEE;      	/* background-color: #FFFFFF; BLANCO      background-color:#F9F8F8;  GRIS CLARITO*/
+}
+.total{ 
+	color:#FF0000;	
+	background-color: #FFFFFF;
+	border: none;
+	font-family:tahoma; 
+	font-size:12px; 
+	text-align:center;
+}
+
+.usuario_conectado{
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+	color:#FFCC00;
+	
+	padding-top:10px;
+	float:right;
+	height:110px;
+	width:20%;
+}
+
+.filas {
+	color: #000000;
+	text-decoration: none;
+	font-size: 12px;
+}
+.barra_nav{
+	color:#FF0000;	
+	background-color: #FFFFFF;
+	border: none;
+	font-family:tahoma; 
+	font-size:12px; 
+	text-align:center;
+	cursor:pointer;
+}
+.barra_nav_actual {
+	color:#336AA2;	
+	background-color: #F9FCFF;
+	border: 1px solid #b6c7e5;
+	font-family:tahoma; 
+	font-size:12px; 
+	text-align:center;
+}
+
+.iconos{
+	border: none;
+	cursor:pointer;
+}
+
+.nota {
+	color:#FF0000;	
+	background-color:#FFF0F0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	border: 1px solid #FF8A8A;
+}
+
+.nota_azul {
+	color:#336AA2;	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	background-color:#eeeeee;  					/* #F0F0F0 #F9F8F8 #FAFAFA       RECOMENDADO --> #EEEEEE <--       #F3F1F1 gris clarito*/
+    border: 1px solid #b6c7e5; /*border color*/ 
+}
+
+/* estilo para treeview*/
+.nodecls{ 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-decoration:none;
+	color:#000000;
+	line-height: 15px; /*   ancho de la fila*/
+	font-weight:normal;
+	color: #336AA2;
+	vertical-align:bottom;
+}
+
+.nodecls_facturado{ 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-decoration:none;
+	color:#FF0000;
+	line-height: 15px; /*   ancho de la fila*/
+	font-weight:bold;
+	color: #336AA2;
+	vertical-align:bottom;
+}
+
+
+/*Scroll en tabla*/
+.tabla_scroll {
+	display: block;
+	height: 9000px;
+	overflow: auto;
+	border: 1px solid #b6c7e5;
+	font-size:11px;
+}
+
+/*Scroll en div*/
+.div_scroll{
+	overflow:auto;
+	height: 9000px;
+	
+}
+/*----------------Estilos para la imagen en modificar articulo-------------------------------------------*/
+.blur{ 
+   background-color: #ccc; /*shadow color*/ 
+   color: inherit; 
+   margin-left: 2px; 
+   margin-top: 2px; 
+   width: 150px; 
+} 
+.shadow, .content{ 
+   position: relative; 
+   bottom: 1px; 
+   right: 1px; 
+} 
+.shadow{ 
+   background-color: #666; /*shadow color*/ 
+   color: inherit; 
+} 
+.content{ 
+   background-color: #FFFFFF; /*background color of content*/ 
+   color: #000; /*text color of content*/ 
+   border: 1px solid #b6c7e5; /*border color*/ 
+   padding: .1em 2ex; 
+} 
+.contentInfo{ 
+   background-color: #FFFFFF; /*background color of content*/ 
+   color: #000; /*text color of content*/ 
+   border: 1px solid #b6c7e5; /*border color*/ 
+   padding: .1em 2ex;
+   font-family:Arial, Helvetica, sans-serif;
+} 
+
+.content IMG{ 
+   border: 3px solid #ccc; 
+}
+
+.herramientas{
+	background-color: #F9FCFF;
+	border: 1px solid #b6c7e5;
+	bottom: 0px;
+	text-align: center;
+}
+
+.mensaje, .error {
+	font-size: 12px;
+	color: #FF0000;
+	text-align: left;
+	display: flex;
+}

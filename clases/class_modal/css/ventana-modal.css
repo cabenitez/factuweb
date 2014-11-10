@@ -1,0 +1,46 @@
+.ventana-modal-fondo {
+	background: #000000; 
+	opacity: 0.2; 
+	-moz-opacity: 0.2;
+	-khtml-opacity: 0.2;
+	filter: alpha(opacity=20);
+}
+
+.ventana-modal-izquierda {
+	width: 1px;
+}
+
+.ventana-modal-izquierda-superior {
+	height: 27px; 
+	width: 20px;
+}
+
+.ventana-modal-izquierda-inferior {
+	height: 25px; 
+	width: 12px;
+}
+
+.ventana-modal-derecha {
+	width: 3px;
+}
+
+.ventana-modal-derecha-superior {
+	height: 27px;
+	width: 28px;
+}
+
+.ventana-modal-derecha-inferior {
+	height: 25px;
+	width: 14px;
+}
+
+.ventana-modal-superior {
+	height: 27px; 
+	font-family: Verdana, Arial; 
+	font-size: 10px; 
+	font-weight: bold;
+}
+
+.ventana-modal-inferior {
+	height: 25px;
+}

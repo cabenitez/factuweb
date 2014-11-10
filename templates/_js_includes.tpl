@@ -1,0 +1,13 @@
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="../js/additional-methods.min.js"></script>
+<script type="text/javascript" src="../js/messages_es.js"></script>
+<script type="text/javascript" src="../js/md5.js"></script>
+<script type="text/javascript" src="../clases/class_modal/js/ventana-modal-1.1.1.js"></script>
+<script type="text/javascript" src="../clases/class_modal/js/abrir-ventana-fija.js"></script>
+<script type="text/javascript" src="../js/tab-view.js"></script>
+<script type="text/javascript" src="../js/tab-ajax.js"></script>
+<script type="text/javascript" src="../js/menu-bar.js"></script>
+<script type="text/javaScript" src="../js/menu-items.js"></script>
+<script type="text/javascript" src="../js/paginador.js"></script>
+<script type="text/javascript" src="../js/autocompletador.js"></script> 
+<script type="text/javascript" src="../js/tooltip.js"></script>

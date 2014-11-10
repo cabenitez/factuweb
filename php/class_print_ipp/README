@@ -1,0 +1,47 @@
+Here is a new PHP class, that needs at least PHP5. 
+This class implements Internet Printing Protocol on client side.
+
+COPYRIGHT
+    Copyright (C) 2005-2006, Thomas Harding.
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Library General Public
+    License as published by the Free Software Foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Library General Public License for more details.
+
+    You should have received a copy of the GNU Library General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 
+    51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+    thomas.harding@laposte.net
+    Thomas Harding, 56 rue de la bourie rouge, 45000 FRANCE
+
+STATUS
+    Currently, it is able to print on an IPP server, parses server's response,
+    is able to cancel jobs, and do all REQUIRED operations from RFC2911.
+
+
+LIMITATIONS
+    - SSL/TLS may work, but is not tested
+
+DOCUMENTATION      
+    Complete documentation is in "./documentation".
+
+ORIGIN
+    It is inspired by "PrintSendLPR", by Mick Sear, but there is no more code
+    of it in. If you search for a very basic print client, uses it :)
+    PrintSendLPR is available at http://www.phpclasses.org (license: LGPL).
+    
+TESTS
+    Usage exemple is given in "TEST_PrintIPP.php".
+    Test files are distributed under GPL.
+
+Enjoy !
+-- 
+Thomas Harding.

@@ -1,0 +1,68 @@
+<?
+// echo error_reporting(E_ALL);
+//________________________configuracion para imprimir_________________________________________________________________________________
+ include("conexion_cups.php"); 							    						// incluye la pagina de conexion con CUPS
+ $ipp->setPrinterURI($impresora); 													// nombre de la impresora tal como lo detecta CUPS
+ $ipp->setRawText(); 
+ $ipp->setCopies($cant_copias);				  										// indica la cantidad de copias
+ $ipp->setDocumentName("Factura Nº $num_sucursal - $num_factura");					// nombre del documento a imprimir
+ $ipp->setJobName('Factura Nº $num_sucursal - $num_factura',true);
+
+
+//_________________________Cuerpo de la Factura_______________________________________________________________________________________
+ $factura="\n\n\t\t\t\t  NOTA DE CREDITO  $num_sucursal - $num_factura \r\n";   	//Numero de Factura   
+
+ $factura.="\t\t\t\t\t\t\t    $fecha \r\n"; 										// Fecha 
+  
+ $factura.="\t\t\t\t\t\t      Hora: $hora_actual \r\n\n\n\n\n\n\n"; 				// Hora 
+ 
+ if($cod_cliente != 'no_cliente'){
+ 		$factura.="\t\t\t\t\t\t\t\t        $cod_cliente \r"; 						//  Nº Cliente
+ }
+ 
+ $factura.="\t  $razon \r\n"; 														//  Nombre Cliente
+ 
+ $factura.="\t  $dir \r"; 															//  Domicilio Cliente
+
+ $factura.="\t\t\t\t\t\t\t     VENDEDOR: $vendedor \r\n"; 							//  Nº VENDEDOR
+ 
+ $factura.="\t   $localidad \r"; 													//  CP - Localidad Cliente
+ 
+ $factura.="\t\t\t\t\t\t\t     FLETERO: $repartidor \r\n\n\n"; 						//  Nº FLETERO 
+
+ $factura.="        $cond_iva_nombre \r"; 											//  Condicion de IVA  
+
+ $factura.="\t\t\t\t\t\t        $cuit \r\n\n ";										//  CUIT 
+
+ $factura.="\t          $forma_pago_nombre \r"; 									//  Condicion de IVA
+
+ $factura.="\t\t\t\t\t\t          $numero_rem \r";									//  Nº de Remito
+ 
+ $factura.="\n\n\n\n\n".$detalle;													// Lineas del detalle de la factura
+
+ $factura.="\n\n\r\t\t\t\t   $observacion \n\n\r";									// espacios para imprimir la linea de totales 
+ 
+ $factura.="\t\t     $tasa_img_bruto_impr \r";										//  % D.G.R. (INGRESO BRUTO)
+
+ $factura.="\t\t\t\t      $tasa_iva_impr \r\n";										//  % de iva
+  
+ 
+ $total_importe = number_format($total_importe,2,'.','');
+ $importe_ing_bruto = number_format($importe_ing_bruto,2,'.','');
+ $subtotal = number_format($subtotal,2,'.','');
+ $importe_iva = number_format($importe_iva,2,'.','');
+ $total_factura = number_format($total_factura,2,'.','');
+
+ $factura.="  $total_importe \r";					 			    				//  Subtotal  
+ $factura.="\t\t   $importe_ing_bruto \r";					 	    				//  D.G.R.
+ $factura.="\t\t\t   $subtotal \r";					 	    						//  Subtotal
+ $factura.="\t\t\t\t      $importe_iva \r";					 						//  IVA
+ $factura.="\t\t\t\t\t\t\t\t  $total_factura \r";					 				//  Total Factura
+
+//_________________________Envia el trabajo a Imprimir_______________________________________________________________________________________
+ $ipp->setData($factura);															//  Toma la cadena para imprimir
+ $ipp->printJob();																	//  Imprime el trabajo
+ $ipp->setBinary(); 																// resetea al uso normal 
+
+ 
+?>

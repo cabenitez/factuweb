@@ -1,0 +1,21 @@
+code {
+	font-size: 14px;
+}
+
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.negrita {
+	font-weight: bold;
+}
+
+.ancho {
+	width: 80px;
+}
+
+.enlace {
+	text-decoration: underline;
+	cursor: pointer;
+}

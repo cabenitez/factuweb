@@ -1,0 +1,23 @@
+
+download PrintIPP.(version).tgz
+
+tar zxvf /PATH/TO/PrintIPP.(version).tgz
+
+tests:
+edit TEST_PrintIPP.php, then run it
+
+IF YOU WANT A STABLE HTTP BACKEND:
+
+    download phphttp <http://en.static.phpclasses.org/browse/package/3.html>
+    (you need to register)
+    download phpsasl <http://en.static.phpclasses.org/browse/package/1888.html>
+    (you need to register)
+
+    cd ./PrintIPP/HTTP # this is IMPORTANT, as SASL expends files in current directory
+
+    tar zxvf /PATH/TO/http-XXXX-XX-XX.tar.gz
+
+    cd ../SASL # this is IMPORTANT, as SASL expends files in current directory
+
+    tar zxvf /PATH/TO/sasl-XXXX-XX-XX.tar.gz
+

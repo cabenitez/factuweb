@@ -1,0 +1,5 @@
+This is a text file with utf-8 characters:
+
+Café
+Noël
+æ Æ AE

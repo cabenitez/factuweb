@@ -1,0 +1,69 @@
+2005-01-20 (CVS):
+  - fixed a bug in http backend: were blocked with specific
+    strings length.
+  - public variable "attributes" filled systematically.
+  - improved doc with variables documentation.
+
+2005-01-19 V0.74:
+    http digest authentication works (with CUPS)!
+    don't forget to make "lppasswd -a user" before to test :).
+    
+2005-01-18 V0.73:
+  - added CupsAcceptJobs adn cupsRejectJobs operations in CupsPrintIPP.
+  - added CUPS specific job attributes in CupsPrintIPP.
+  - added documentation for attributes
+  
+2005-01-16 V0.72:
+  - Improved setAttribute and related: 1setOf xxx now supported:
+    use setAttribute('attribute',array('foo','bar'))
+        for 1set Of ...
+    or
+        setAttribute('attribute','foo') for one attribute only.
+    NOTE: unsetAttribute('attribute') delete the complete set.
+  - Corrected _integerBuild and _interpretInteger. Have doubts on values < 0.
+  - Adding support for RFC3382 'collection' attribute *parsing*.
+    No nested collection to test: it /may/ work for nested collections.
+  - Adding operation setJobAttributes (From RFC3380) in ExtendedPrintIPP
+  - Adding operation cupsGetDefaults (From CUPS-IPP-1.1) in CupsPrintIPP
+  - correcting parsing of validateJob() operation: now result is found
+    in $ipp->attributes.
+  
+2005-01-10 V0.71:
+    Improved HTTP backend: loads systematically complete 
+    response from server
+
+2005-01-09 V0.7:
+   Writed a new http_class which replace HTTP and SASL backend
+        - same api
+        - not very stable :)
+        - identification mechanisms: Digest only
+        - no SSL
+
+2005-01-07 V0.6b:
+  - Integrated changes by Manuel Lemos on _sendHTTP
+    to merge with his new HTTP backend.
+  
+  - HTTP backend is no more shipped-with:
+    You have to download it at
+    http://www.phpclasses.org/browse/package/3.html
+
+  - Largefiles: use V.06a, or patch the http backend :)
+
+2005-01-06 V0.6a:
+    last cvs version
+
+2005-01-06 (CVS):
+    solved getPrinterAttributes "return" bug
+
+2005-01-06 V0.6:
+    Last CVS version with improved doc
+
+2005-01-05 (CVS):
+    all RFC 2911 operations implemented
+    
+2006-01-4 V0.5a:
+    corrected bugs in html.php, corrected testfiles
+
+2006-01-03 V0.5: 
+    all RFC2911 mandatory operations implemented
+

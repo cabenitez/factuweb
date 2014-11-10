@@ -1,0 +1,340 @@
+<html>
+<head>
+<title>Ayuda Sistema de Facturación</title>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+<style type="text/css"> 
+<!-- 
+.selected {font-weight: normal;background-color: #E2E2E2;padding:0px,2px,0px,2px;}
+.unselected { font-weight: normal;padding:0px,2px,0px,2px;}
+.hand { cursor: hand; }
+.p {height: 16px;width: 16px;vertical-align: middle;border: 0;}
+div,body { font-family: Tahoma, Verdana; font-size: 11px; }
+A:link {text-decoration: none; color:#000000}
+A:visited {text-decoration: none; color: #000000}
+A:active {text-decoration: none; color: #000000 }
+A:hover {text-decoration: none; color: #FF0000 }
+
+-->
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+var cl,pn,pm,bl;
+var path = 'icons/';
+var pos = 0;
+var icon;
+var tar = 'content';
+var display;
+var imgi;
+var AutoCollapse;
+var LastSelected = 0;
+var loaded = false;
+var max;
+var divlist;
+
+function SetEnv(v,a){
+
+if(v==0){ 
+	pn = [['daplus.gif','daminus.gif'],['tplus.gif','tminus.gif'],['uaplus.gif','uaminus.gif'],['splus.gif','sminus.gif']];
+	PreloadImg('downangle.gif','tshaped.gif','upangle.gif','sline.gif','daplus.gif','daminus.gif','tplus.gif','tminus.gif','uaplus.gif','uaminus.gif','splus.gif','sminus.gif','blank.gif','line.gif');
+}else{
+	pn = [['plus.gif','minus.gif']];
+	PreloadImg('plus.gif','minus.gif','blank.gif');
+
+}
+AutoCollapse = a;
+}
+
+ function PreloadImg(){
+if (document.images) { 
+	var imgs = PreloadImg.arguments; 
+	var pload = new Array();
+	for (var i=0; i<imgs.length; i++) { 
+		pload[i] = new Image; 
+		pload[i].src = path + imgs; 
+	} 
+} 
+ } 
+
+function get(o){
+var x;
+if(document.all) x=document.all[o]; 
+if(document.getElementById) x=document.getElementById(o);
+
+return x;
+}
+
+
+function pnImg(img){
+var i,j;
+for(i=0;i<=3;i++){
+	for(j=0;j<=1;j++){
+	if(img.substr(img.lastIndexOf('/') + 1)== pn[i][j]){
+		return i;
+	}
+	}
+}
+}
+function icon(img){
+var f;
+f = img.substr(img.lastIndexOf('/') + 1);
+if( f=='1.gif' || f=='2.gif'){
+	return ['1.gif','2.gif'];
+}
+if( f=='3.gif' || f=='4.gif'){
+	return ['3.gif','4.gif'];
+}
+if( f=='5.gif' || f=='6.gif'){
+	return ['5.gif','6.gif'];
+}
+if( f=='7.gif' || f=='8.gif'){
+	return ['7.gif','8.gif'];
+}
+return [f,f];
+}
+
+function show(id){
+get('d' + id).style.display='block';
+if(get('imgn' + id )) get('imgn' + id ).src= path + pn[pnImg(get('imgn' + id ).src)][1];
+get('img' + id ).src= path + icon(get('img' + id ).src)[1];
+
+}
+
+function collapse(id){
+get('d' + id ).style.display='none';
+if(get('imgn' + id )) get('imgn' + id ).src= path + pn[pnImg(get('imgn' + id ).src)][0];
+get('img' + id ).src= path + icon(get('img' + id ).src)[0];
+
+}
+
+function collapseAll(){
+var i;
+var o;
+for(i=0;i<=divlist.length-1;i++){
+	if(o=get('d' + divlist[i])){
+		if(o.style.display!='none'){ 
+			collapse(divlist[i]);
+		}
+	}
+}
+}
+
+function unselectAll(){
+var i=0;
+while(get("l" + i)){
+	get("l" + i).className = "unselected";
+	i++;
+}
+}
+
+function showParent(ele){
+var e;
+e = ele.parentNode;
+
+if(e==null) return;
+
+if(e.nodeName == 'DIV'){
+	if(e.id!='') show(e.id.substring(1,e.id.length ));
+}else if(e.nodeName == 'A'){
+
+}
+showParent(e);
+}
+
+function showNode(index){
+showParent(get("l" + index));
+LinkClick(index);
+}
+
+function selectNode(index){
+showParent(get("l" + index));
+LinkClick(index);
+}
+
+
+function NodeClick(id){
+if(get('d' + id ).style.display=='none'){
+	show(id);
+}else{
+	collapse(id);
+}
+return false;
+}
+
+function LinkDblClick(id){
+if(!AutoCollapse){
+	if(get('d' + id ).style.display=='none'){
+		show(id);
+	}else{
+		collapse(id);
+	}
+}
+return false;
+}
+
+function LinkClick(index,hasChild,r){
+if(AutoCollapse && hasChild){
+	if(get('d' + index ).style.display=='none'){
+		collapseAll()
+		showParent(get('l' + index));
+		show(index);
+	}else{
+		collapseAll()
+		showParent(get('l' + index));	
+		collapse(index);
+	}
+}
+get('l' + LastSelected).className = "unselected";
+get('l' + index).className = "selected";
+LastSelected = index;
+return r;
+}
+
+function body_onmousemove(event){
+if(typeof(document.body.scrollTop)!='undefined'){
+if(parseInt(event.clientX)<5){
+window.scroll(0,document.body.scrollTop);}}
+if(typeof(window.scrollY)!='undefined'){
+if(parseInt(event.clientX)<5){
+window.scrollTo(0,window.scrollY);}}
+}
+
+window.defaultStatus = '';
+
+//-->
+</SCRIPT>
+<style type="text/css"> 
+<!-- 
+BODY {
+scrollbar-face-color:#DCDBD6;
+scrollbar-highlight-color:#DFDFDF;
+scrollbar-3dlight-color:#DCDBD6;
+scrollbar-darkshadow-color:#000000;
+scrollbar-shadow-color:#DFDFDF;
+scrollbar-arrow-color:#EFEFEF;
+scrollbar-track-color:#EFEFEF;
+}
+-->
+</style>
+
+
+</head>
+
+<body  background="../imagenes/fondo_cuadrito.gif" bgcolor="#ffffff" leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" onmousemove="body_onmousemove(event);" onload="loaded = true;">
+
+<div id="loading"><font color="#FF0000" size="1"> Loading table of contents... 
+</font><br><br></div>
+<script>SetEnv(0,false)</script><div><nobr><img src="icons/downangle.gif" class="p"><a href="scr/bienvenidos.htm" onclick="return LinkClick('0',false,true)" target="content" title=" Bienvenidos" onmousemove="window.status='Bienvenidos'"><img src="icons/11.gif" class="p"> <span id="l0" class="unselected">Bienvenidos</span></a></nobr></div>
+<div><nobr><a href="#" onClick="return NodeClick('1')"><img id="imgn1" src="icons/tplus.gif" class="p"></a><a href="scr/introduccion.htm" onclick="return LinkClick('1',true,true)" onDblClick="return LinkDblClick('1')" target="content" title="Introducción" onmousemove="window.status='Introducción'"><img id="img1" src="icons/1.gif" class="p"> <span id="l1" class="unselected">Introducción</span></a></nobr></div>
+<div id="d1" style="display:none"><div><nobr><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/introduccionasistemadefacturacion.htm" onclick="return LinkClick('2',false,true)" target="content" title=" Introducción a Sistema de Facturación" onmousemove="window.status='Introducción a Sistema de Facturación'"><img src="icons/11.gif" class="p"> <span id="l2" class="unselected">Introducción a Sistema de Facturación</span></a></nobr></div>
+<div><nobr><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/requisitosdelsistema.htm" onclick="return LinkClick('3',false,true)" target="content" title=" Requisitos del Sistema" onmousemove="window.status='Requisitos del Sistema'"><img src="icons/11.gif" class="p"> <span id="l3" class="unselected">Requisitos del Sistema</span></a></nobr></div>
+</div><div><nobr><a href="#" onClick="return NodeClick('4')"><img id="imgn4" src="icons/uaplus.gif" class="p"></a><a href="scr/comoseusa.htm" onclick="return LinkClick('4',true,true)" onDblClick="return LinkDblClick('4')" target="content" title="¿Cómo usar?" onmousemove="window.status='¿Cómo usar?'"><img id="img4" src="icons/1.gif" class="p"> <span id="l4" class="unselected">¿Cómo usar?</span></a></nobr></div>
+<div id="d4" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/acceso.htm" onclick="return LinkClick('5',false,true)" target="content" title=" Acceso" onmousemove="window.status='Acceso'"><img src="icons/11.gif" class="p"> <span id="l5" class="unselected">Acceso</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/principal.htm" onclick="return LinkClick('6',false,true)" target="content" title=" Inicio" onmousemove="window.status='Inicio'"><img src="icons/11.gif" class="p"> <span id="l6" class="unselected">Inicio</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('7')"><img id="imgn7" src="icons/tplus.gif" class="p"></a><a href="scr/archivo.htm" onclick="return LinkClick('7',true,true)" onDblClick="return LinkDblClick('7')" target="content" title="Archivos" onmousemove="window.status='Archivos'"><img id="img7" src="icons/1.gif" class="p"> <span id="l7" class="unselected">Archivos</span></a></nobr></div>
+<div id="d7" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('8')"><img id="imgn8" src="icons/tplus.gif" class="p"></a><a href="scr/zonasgeograficas.htm" onclick="return LinkClick('8',true,true)" onDblClick="return LinkDblClick('8')" target="content" title="Zonas Geográficas" onmousemove="window.status='Zonas Geográficas'"><img id="img8" src="icons/1.gif" class="p"> <span id="l8" class="unselected">Zonas Geográficas</span></a></nobr></div>
+<div id="d8" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/paises.htm" onclick="return LinkClick('9',false,true)" target="content" title=" Países" onmousemove="window.status='Países'"><img src="icons/11.gif" class="p"> <span id="l9" class="unselected">Países</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/provincias.htm" onclick="return LinkClick('10',false,true)" target="content" title=" Provincias" onmousemove="window.status='Provincias'"><img src="icons/11.gif" class="p"> <span id="l10" class="unselected">Provincias</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/localidades.htm" onclick="return LinkClick('11',false,true)" target="content" title=" Localidades" onmousemove="window.status='Localidades'"><img src="icons/11.gif" class="p"> <span id="l11" class="unselected">Localidades</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/zonas.htm" onclick="return LinkClick('12',false,true)" target="content" title=" Zonas" onmousemove="window.status='Zonas'"><img src="icons/11.gif" class="p"> <span id="l12" class="unselected">Zonas</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('13')"><img id="imgn13" src="icons/tplus.gif" class="p"></a><a href="scr/alicuotas.htm" onclick="return LinkClick('13',true,true)" onDblClick="return LinkDblClick('13')" target="content" title="Alicuotas" onmousemove="window.status='Alicuotas'"><img id="img13" src="icons/1.gif" class="p"> <span id="l13" class="unselected">Alicuotas</span></a></nobr></div>
+<div id="d13" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/iva.htm" onclick="return LinkClick('14',false,true)" target="content" title=" IVA" onmousemove="window.status='IVA'"><img src="icons/11.gif" class="p"> <span id="l14" class="unselected">IVA</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/impuestosinternos.htm" onclick="return LinkClick('15',false,true)" target="content" title=" Impuestos Internos" onmousemove="window.status='Impuestos Internos'"><img src="icons/11.gif" class="p"> <span id="l15" class="unselected">Impuestos Internos</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/percepcioniva.htm" onclick="return LinkClick('16',false,true)" target="content" title=" Percepción de IVA" onmousemove="window.status='Percepción de IVA'"><img src="icons/11.gif" class="p"> <span id="l16" class="unselected">Percepción de IVA</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/ingresosbrutos.htm" onclick="return LinkClick('17',false,true)" target="content" title=" Ingresos Brutos" onmousemove="window.status='Ingresos Brutos'"><img src="icons/11.gif" class="p"> <span id="l17" class="unselected">Ingresos Brutos</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/comprobantes.htm" onclick="return LinkClick('18',false,true)" target="content" title=" Comprobantes" onmousemove="window.status='Comprobantes'"><img src="icons/11.gif" class="p"> <span id="l18" class="unselected">Comprobantes</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/condiciondeiva.htm" onclick="return LinkClick('19',false,true)" target="content" title=" Condición de IVA" onmousemove="window.status='Condición de IVA'"><img src="icons/11.gif" class="p"> <span id="l19" class="unselected">Condición de IVA</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/talonarios.htm" onclick="return LinkClick('20',false,true)" target="content" title=" Talonarios" onmousemove="window.status='Talonarios'"><img src="icons/11.gif" class="p"> <span id="l20" class="unselected">Talonarios</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/proveedores.htm" onclick="return LinkClick('21',false,true)" target="content" title=" Proveedores" onmousemove="window.status='Proveedores'"><img src="icons/11.gif" class="p"> <span id="l21" class="unselected">Proveedores</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/vehiculos.htm" onclick="return LinkClick('22',false,true)" target="content" title=" Vehículos" onmousemove="window.status='Vehículos'"><img src="icons/11.gif" class="p"> <span id="l22" class="unselected">Vehículos</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/repartidores.htm" onclick="return LinkClick('23',false,true)" target="content" title=" Repartidores" onmousemove="window.status='Repartidores'"><img src="icons/11.gif" class="p"> <span id="l23" class="unselected">Repartidores</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/vendedores.htm" onclick="return LinkClick('24',false,true)" target="content" title=" Vendedores" onmousemove="window.status='Vendedores'"><img src="icons/11.gif" class="p"> <span id="l24" class="unselected">Vendedores</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/categorias.htm" onclick="return LinkClick('25',false,true)" target="content" title=" Categorías" onmousemove="window.status='Categorías'"><img src="icons/11.gif" class="p"> <span id="l25" class="unselected">Categorías</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/formasdepago.htm" onclick="return LinkClick('26',false,true)" target="content" title=" Formas de Pago" onmousemove="window.status='Formas de Pago'"><img src="icons/11.gif" class="p"> <span id="l26" class="unselected">Formas de Pago</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/clientes.htm" onclick="return LinkClick('27',false,true)" target="content" title=" Clientes" onmousemove="window.status='Clientes'"><img src="icons/11.gif" class="p"> <span id="l27" class="unselected">Clientes</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('28')"><img id="imgn28" src="icons/uaplus.gif" class="p"></a><a href="scr/articulos.htm" onclick="return LinkClick('28',true,true)" onDblClick="return LinkDblClick('28')" target="content" title="Artículos" onmousemove="window.status='Artículos'"><img id="img28" src="icons/1.gif" class="p"> <span id="l28" class="unselected">Artículos</span></a></nobr></div>
+<div id="d28" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/grupos.htm" onclick="return LinkClick('29',false,true)" target="content" title=" Grupos" onmousemove="window.status='Grupos'"><img src="icons/11.gif" class="p"> <span id="l29" class="unselected">Grupos</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/marcas.htm" onclick="return LinkClick('30',false,true)" target="content" title=" Marcas" onmousemove="window.status='Marcas'"><img src="icons/11.gif" class="p"> <span id="l30" class="unselected">Marcas</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/variedad.htm" onclick="return LinkClick('31',false,true)" target="content" title=" Variedades" onmousemove="window.status='Variedades'"><img src="icons/11.gif" class="p"> <span id="l31" class="unselected">Variedades</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/medidas.htm" onclick="return LinkClick('32',false,true)" target="content" title=" Medidas" onmousemove="window.status='Medidas'"><img src="icons/11.gif" class="p"> <span id="l32" class="unselected">Medidas</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/articulo.htm" onclick="return LinkClick('33',false,true)" target="content" title=" Artículos" onmousemove="window.status='Artículos'"><img src="icons/11.gif" class="p"> <span id="l33" class="unselected">Artículos</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('34')"><img id="imgn34" src="icons/tplus.gif" class="p"></a><a href="scr/configuraciones.htm" onclick="return LinkClick('34',true,true)" onDblClick="return LinkDblClick('34')" target="content" title="Configuraciones" onmousemove="window.status='Configuraciones'"><img id="img34" src="icons/1.gif" class="p"> <span id="l34" class="unselected">Configuraciones</span></a></nobr></div>
+<div id="d34" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/datosdelaempresa.htm" onclick="return LinkClick('35',false,true)" target="content" title=" Datos de la Empresa" onmousemove="window.status='Datos de la Empresa'"><img src="icons/11.gif" class="p"> <span id="l35" class="unselected">Datos de la Empresa</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/configurarlistados.htm" onclick="return LinkClick('36',false,true)" target="content" title=" Configurar Listados" onmousemove="window.status='Configurar Listados'"><img src="icons/11.gif" class="p"> <span id="l36" class="unselected">Configurar Listados</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('37')"><img id="imgn37" src="icons/uaplus.gif" class="p"></a><a href="scr/usuarios.htm" onclick="return LinkClick('37',true,true)" onDblClick="return LinkDblClick('37')" target="content" title="Usuarios" onmousemove="window.status='Usuarios'"><img id="img37" src="icons/1.gif" class="p"> <span id="l37" class="unselected">Usuarios</span></a></nobr></div>
+<div id="d37" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/altadeusuarios.htm" onclick="return LinkClick('38',false,true)" target="content" title=" Alta de Usuarios" onmousemove="window.status='Alta de Usuarios'"><img src="icons/11.gif" class="p"> <span id="l38" class="unselected">Alta de Usuarios</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/modificardatos.htm" onclick="return LinkClick('39',false,true)" target="content" title=" Modificar Datos" onmousemove="window.status='Modificar Datos'"><img src="icons/11.gif" class="p"> <span id="l39" class="unselected">Modificar Datos</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('40')"><img id="imgn40" src="icons/tplus.gif" class="p"></a><a href="scr/movimientos.htm" onclick="return LinkClick('40',true,true)" onDblClick="return LinkDblClick('40')" target="content" title="Movimientos" onmousemove="window.status='Movimientos'"><img id="img40" src="icons/1.gif" class="p"> <span id="l40" class="unselected">Movimientos</span></a></nobr></div>
+<div id="d40" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('41')"><img id="imgn41" src="icons/tplus.gif" class="p"></a><a href="scr/stock.htm" onclick="return LinkClick('41',true,true)" onDblClick="return LinkDblClick('41')" target="content" title="Stock" onmousemove="window.status='Stock'"><img id="img41" src="icons/1.gif" class="p"> <span id="l41" class="unselected">Stock</span></a></nobr></div>
+<div id="d41" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/ingresostock Inicial.htm" onclick="return LinkClick('42',false,true)" target="content" title=" Ingreso Stock Inicial" onmousemove="window.status='Ingreso Stock Inicial'"><img src="icons/11.gif" class="p"> <span id="l42" class="unselected">Ingreso Stock Inicial</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/poneraceroexistencias.htm" onclick="return LinkClick('43',false,true)" target="content" title=" Poner a Cero Existencias" onmousemove="window.status='Poner a Cero Existencias'"><img src="icons/11.gif" class="p"> <span id="l43" class="unselected">Poner a Cero Existencias</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('44')"><img id="imgn44" src="icons/tplus.gif" class="p"></a><a href="scr/compras.htm" onclick="return LinkClick('44',true,true)" onDblClick="return LinkDblClick('44')" target="content" title="Compras" onmousemove="window.status='Compras'"><img id="img44" src="icons/1.gif" class="p"> <span id="l44" class="unselected">Compras</span></a></nobr></div>
+<div id="d44" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('45')"><img id="imgn45" src="icons/uaplus.gif" class="p"></a><a href="scr/facturas.htm" onclick="return LinkClick('45',true,true)" onDblClick="return LinkDblClick('45')" target="content" title="Facturas" onmousemove="window.status='Facturas'"><img id="img45" src="icons/1.gif" class="p"> <span id="l45" class="unselected">Facturas</span></a></nobr></div>
+<div id="d45" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/altadefacturas.htm" onclick="return LinkClick('46',false,true)" target="content" title=" Alta de Factura" onmousemove="window.status='Alta de Factura'"><img src="icons/11.gif" class="p"> <span id="l46" class="unselected">Alta de Factura</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('47')"><img id="imgn47" src="icons/uaplus.gif" class="p"></a><a href="scr/ventas.htm" onclick="return LinkClick('47',true,true)" onDblClick="return LinkDblClick('47')" target="content" title="Ventas" onmousemove="window.status='Ventas'"><img id="img47" src="icons/1.gif" class="p"> <span id="l47" class="unselected">Ventas</span></a></nobr></div>
+<div id="d47" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('48')"><img id="imgn48" src="icons/tplus.gif" class="p"></a><a href="scr/remitos.htm" onclick="return LinkClick('48',true,true)" onDblClick="return LinkDblClick('48')" target="content" title="Remitos" onmousemove="window.status='Remitos'"><img id="img48" src="icons/1.gif" class="p"> <span id="l48" class="unselected">Remitos</span></a></nobr></div>
+<div id="d48" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/altaderemitos.htm" onclick="return LinkClick('49',false,true)" target="content" title=" Alta de Remitos" onmousemove="window.status='Alta de Remitos'"><img src="icons/11.gif" class="p"> <span id="l49" class="unselected">Alta de Remitos</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('50')"><img id="imgn50" src="icons/tplus.gif" class="p"></a><a href="scr/facturas1.htm" onclick="return LinkClick('50',true,true)" onDblClick="return LinkDblClick('50')" target="content" title="Facturas" onmousemove="window.status='Facturas'"><img id="img50" src="icons/1.gif" class="p"> <span id="l50" class="unselected">Facturas</span></a></nobr></div>
+<div id="d50" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/altadefactura1.htm" onclick="return LinkClick('51',false,true)" target="content" title=" Alta de Factura" onmousemove="window.status='Alta de Factura'"><img src="icons/11.gif" class="p"> <span id="l51" class="unselected">Alta de Factura</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/buscar2.htm" onclick="return LinkClick('52',false,true)" target="content" title=" Buscar" onmousemove="window.status='Buscar'"><img src="icons/11.gif" class="p"> <span id="l52" class="unselected">Buscar</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('53')"><img id="imgn53" src="icons/uaplus.gif" class="p"></a><a href="scr/anularfactura.htm" onclick="return LinkClick('53',true,true)" onDblClick="return LinkDblClick('53')" target="content" title="Anular Factura" onmousemove="window.status='Anular Factura'"><img id="img53" src="icons/1.gif" class="p"> <span id="l53" class="unselected">Anular Factura</span></a></nobr></div>
+<div id="d53" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/anularfacturagenerada.htm" onclick="return LinkClick('54',false,true)" target="content" title=" Anular Factura Generada" onmousemove="window.status='Anular Factura Generada'"><img src="icons/11.gif" class="p"> <span id="l54" class="unselected">Anular Factura Generada</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/anularnumeracion.htm" onclick="return LinkClick('55',false,true)" target="content" title=" Anular Numeracion" onmousemove="window.status='Anular Numeracion'"><img src="icons/11.gif" class="p"> <span id="l55" class="unselected">Anular Numeracion</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('56')"><img id="imgn56" src="icons/tplus.gif" class="p"></a><a href="scr/notadecredito.htm" onclick="return LinkClick('56',true,true)" onDblClick="return LinkDblClick('56')" target="content" title="Nota de Credito" onmousemove="window.status='Nota de Credito'"><img id="img56" src="icons/1.gif" class="p"> <span id="l56" class="unselected">Nota de Credito</span></a></nobr></div>
+<div id="d56" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/altadenotadecredito.htm" onclick="return LinkClick('57',false,true)" target="content" title=" Alta de Nota de Credito" onmousemove="window.status='Alta de Nota de Credito'"><img src="icons/11.gif" class="p"> <span id="l57" class="unselected">Alta de Nota de Credito</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('58')"><img id="imgn58" src="icons/tplus.gif" class="p"></a><a href="scr/cuentacorriente.htm" onclick="return LinkClick('58',true,true)" onDblClick="return LinkDblClick('58')" target="content" title="Cuenta Corriente" onmousemove="window.status='Cuenta Corriente'"><img id="img58" src="icons/1.gif" class="p"> <span id="l58" class="unselected">Cuenta Corriente</span></a></nobr></div>
+<div id="d58" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/asignaciondetalonario.htm" onclick="return LinkClick('59',false,true)" target="content" title=" Asignacion de Talonarios" onmousemove="window.status='Asignacion de Talonarios'"><img src="icons/11.gif" class="p"> <span id="l59" class="unselected">Asignacion de Talonarios</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/ingresodecobranza.htm" onclick="return LinkClick('60',false,true)" target="content" title=" Ingreso de Cobranza" onmousemove="window.status='Ingreso de Cobranza'"><img src="icons/11.gif" class="p"> <span id="l60" class="unselected">Ingreso de Cobranza</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/imputaciondecomprobantes.htm" onclick="return LinkClick('61',false,true)" target="content" title=" Imputacion de Comprobantes" onmousemove="window.status='Imputacion de Comprobantes'"><img src="icons/11.gif" class="p"> <span id="l61" class="unselected">Imputacion de Comprobantes</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/buscar3.htm" onclick="return LinkClick('62',false,true)" target="content" title=" Buscar" onmousemove="window.status='Buscar'"><img src="icons/11.gif" class="p"> <span id="l62" class="unselected">Buscar</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('63')"><img id="imgn63" src="icons/tplus.gif" class="p"></a><a href="scr/comisiones1.htm" onclick="return LinkClick('63',true,true)" onDblClick="return LinkDblClick('63')" target="content" title="Comisiones" onmousemove="window.status='Comisiones'"><img id="img63" src="icons/1.gif" class="p"> <span id="l63" class="unselected">Comisiones</span></a></nobr></div>
+<div id="d63" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/regularcomision.htm" onclick="return LinkClick('64',false,true)" target="content" title=" Regular Comision" onmousemove="window.status='Regular Comision'"><img src="icons/11.gif" class="p"> <span id="l64" class="unselected">Regular Comision</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/comisiondevendedores.htm" onclick="return LinkClick('65',false,true)" target="content" title=" Comision de Vendedores" onmousemove="window.status='Comision de Vendedores'"><img src="icons/11.gif" class="p"> <span id="l65" class="unselected">Comision de Vendedores</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/devoluciones1.htm" onclick="return LinkClick('66',false,true)" target="content" title=" Devoluciones" onmousemove="window.status='Devoluciones'"><img src="icons/11.gif" class="p"> <span id="l66" class="unselected">Devoluciones</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/finalizarcarga.htm" onclick="return LinkClick('67',false,true)" target="content" title=" Finalizar Carga" onmousemove="window.status='Finalizar Carga'"><img src="icons/11.gif" class="p"> <span id="l67" class="unselected">Finalizar Carga</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('68')"><img id="imgn68" src="icons/tplus.gif" class="p"></a><a href="scr/informes.htm" onclick="return LinkClick('68',true,true)" onDblClick="return LinkDblClick('68')" target="content" title="Informes" onmousemove="window.status='Informes'"><img id="img68" src="icons/1.gif" class="p"> <span id="l68" class="unselected">Informes</span></a></nobr></div>
+<div id="d68" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('69')"><img id="imgn69" src="icons/tplus.gif" class="p"></a><a href="scr/facturacion.htm" onclick="return LinkClick('69',true,true)" onDblClick="return LinkDblClick('69')" target="content" title="Facturacion" onmousemove="window.status='Facturacion'"><img id="img69" src="icons/1.gif" class="p"> <span id="l69" class="unselected">Facturacion</span></a></nobr></div>
+<div id="d69" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/ventasdeldia.htm" onclick="return LinkClick('70',false,true)" target="content" title=" Ventas del Dia" onmousemove="window.status='Ventas del Dia'"><img src="icons/11.gif" class="p"> <span id="l70" class="unselected">Ventas del Dia</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/detalledecomprobantes.htm" onclick="return LinkClick('71',false,true)" target="content" title=" Detalle de Comprobantes" onmousemove="window.status='Detalle de Comprobantes'"><img src="icons/11.gif" class="p"> <span id="l71" class="unselected">Detalle de Comprobantes</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/comprasporcliente.htm" onclick="return LinkClick('72',false,true)" target="content" title=" Compras por Cliente" onmousemove="window.status='Compras por Cliente'"><img src="icons/11.gif" class="p"> <span id="l72" class="unselected">Compras por Cliente</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/ivaventa.htm" onclick="return LinkClick('73',false,true)" target="content" title=" IVA Venta" onmousemove="window.status='IVA Venta'"><img src="icons/11.gif" class="p"> <span id="l73" class="unselected">IVA Venta</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('74')"><img id="imgn74" src="icons/tplus.gif" class="p"></a><a href="scr/cuentacorriente1.htm" onclick="return LinkClick('74',true,true)" onDblClick="return LinkDblClick('74')" target="content" title="Cuenta Corriente" onmousemove="window.status='Cuenta Corriente'"><img id="img74" src="icons/1.gif" class="p"> <span id="l74" class="unselected">Cuenta Corriente</span></a></nobr></div>
+<div id="d74" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/composiciondesaldos.htm" onclick="return LinkClick('75',false,true)" target="content" title=" Composicion de Saldos" onmousemove="window.status='Composicion de Saldos'"><img src="icons/11.gif" class="p"> <span id="l75" class="unselected">Composicion de Saldos</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/estadodedeudas.htm" onclick="return LinkClick('76',false,true)" target="content" title=" Estado de Deudas" onmousemove="window.status='Estado de Deudas'"><img src="icons/11.gif" class="p"> <span id="l76" class="unselected">Estado de Deudas</span></a></nobr></div>
+</div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><a href="#" onClick="return NodeClick('77')"><img id="imgn77" src="icons/uaplus.gif" class="p"></a><a href="scr/articulos1.htm" onclick="return LinkClick('77',true,true)" onDblClick="return LinkDblClick('77')" target="content" title="Articulos" onmousemove="window.status='Articulos'"><img id="img77" src="icons/1.gif" class="p"> <span id="l77" class="unselected">Articulos</span></a></nobr></div>
+<div id="d77" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/rankingdearticulosvendidos.htm" onclick="return LinkClick('78',false,true)" target="content" title=" Ranking de Articulos Vendidos" onmousemove="window.status='Ranking de Articulos Vendidos'"><img src="icons/11.gif" class="p"> <span id="l78" class="unselected">Ranking de Articulos Vendidos</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/listadeprecios.htm" onclick="return LinkClick('79',false,true)" target="content" title=" Lista de Precios" onmousemove="window.status='Lista de Precios'"><img src="icons/11.gif" class="p"> <span id="l79" class="unselected">Lista de Precios</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/line.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/stockactual.htm" onclick="return LinkClick('80',false,true)" target="content" title=" Stock Actual" onmousemove="window.status='Stock Actual'"><img src="icons/11.gif" class="p"> <span id="l80" class="unselected">Stock Actual</span></a></nobr></div>
+</div></div><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/resumendeenvases.htm" onclick="return LinkClick('81',false,true)" target="content" title=" Resumen de Envases" onmousemove="window.status='Resumen de Envases'"><img src="icons/11.gif" class="p"> <span id="l81" class="unselected">Resumen de Envases</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/cargasdiarias.htm" onclick="return LinkClick('82',false,true)" target="content" title=" Cargas Diarias" onmousemove="window.status='Cargas Diarias'"><img src="icons/11.gif" class="p"> <span id="l82" class="unselected">Cargas Diarias</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><a href="#" onClick="return NodeClick('83')"><img id="imgn83" src="icons/uaplus.gif" class="p"></a><a href="scr/utilidades.htm" onclick="return LinkClick('83',true,true)" onDblClick="return LinkDblClick('83')" target="content" title="Utilidades" onmousemove="window.status='Utilidades'"><img id="img83" src="icons/1.gif" class="p"> <span id="l83" class="unselected">Utilidades</span></a></nobr></div>
+<div id="d83" style="display:none"><div><nobr><img src="icons/blank.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/tshaped.gif" class="p"><a href="scr/copiadeseguridad.htm" onclick="return LinkClick('84',false,true)" target="content" title=" Copia de Seguridad" onmousemove="window.status='Copia de Seguridad'"><img src="icons/11.gif" class="p"> <span id="l84" class="unselected">Copia de Seguridad</span></a></nobr></div>
+<div><nobr><img src="icons/blank.gif" class="p"><img src="icons/blank.gif" class="p"><img src="icons/upangle.gif" class="p"><a href="scr/calendariodeeventos.htm" onclick="return LinkClick('85',false,true)" target="content" title=" Calendario de Eventos" onmousemove="window.status='Calendario de Eventos'"><img src="icons/11.gif" class="p"> <span id="l85" class="unselected">Calendario de Eventos</span></a></nobr></div>
+</div></div><script>divlist = [1,4,7,8,13,28,34,37,40,41,44,45,47,48,50,53,56,58,63,68,69,74,77,83]</script>
+<script>get('loading').style.display='none';</script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</body>
+</html>

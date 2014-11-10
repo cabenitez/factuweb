@@ -1,0 +1,33 @@
+#rewrite_engine on
+
+# 400 - mala demanda
+#ErrorDocument 400: /error/401.php
+
+# 401 - requiere autenticacion
+#ErrorDocument 401 /error/401.php
+
+# 403 - prohibido
+#ErrorDocument 403 ../error/404.php
+
+# 404 - no encontrado
+ErrorDocument 404 error.php
+
+# 500 - error del servidor
+#ErrorDocument 500 /error/500.php
+
+
+
+# -- tiempo de ejecucion de los scripts 
+#php_value max_execution_time 10000
+
+# -- activa las variables globales 
+#php_flag register_globals 1
+#php_value register_globals on
+
+# -- define el tiempo de vida de las sessiones 
+#php_value session.gc_maxlifetime 18000
+
+# -- si se propaga el SID por cookie 
+#php_value session.cookie_lifetime 18000
+
+#php_value session.cache_expire 18000
